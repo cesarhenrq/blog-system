@@ -14,6 +14,22 @@ class UsersRepository {
   async findById(id: string) {
     return this.model.findById(id);
   }
+
+  async getAll() {
+    return this.model.find().populate("posts");
+  }
+
+  async associatePost(userId: string, postId: string) {
+    await this.model.findByIdAndUpdate(
+      userId,
+      {
+        $push: { posts: postId },
+      },
+      {
+        new: true,
+      }
+    );
+  }
 }
 
 export default UsersRepository;

@@ -31,6 +31,8 @@ class PostsService {
 
       const post = await this.postsRepository.create(payload);
 
+      await this.usersRepository.associatePost(author, post._id);
+
       return {
         statusCode: 201,
         message: "Post created successfully",

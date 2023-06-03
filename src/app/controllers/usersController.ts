@@ -30,6 +30,14 @@ class UsersController {
 
     return res.status(statusCode).json({ message, data });
   }
+
+  async getAll(req: Request, res: Response) {
+    const { query } = req;
+
+    const { statusCode, message, data } = await this.service.getAll(query);
+
+    return res.status(statusCode).json({ message, data });
+  }
 }
 
 export default UsersController;

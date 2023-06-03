@@ -8,4 +8,6 @@ const userModule = UserModule.build();
 
 usersRouter.post("/", userModule.create.bind(userModule));
 
+usersRouter.get("/", userModule.getAll.bind(userModule));
+
 export default usersRouter;
