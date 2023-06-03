@@ -21,6 +21,29 @@ class UsersService {
       return { statusCode: 500, message: error.message, data: null };
     }
   }
+
+  async getAll(query: any) {
+    try {
+      const users = await this.repository.getAll();
+
+      let page = !!query.page ? parseInt(query.page) : 1;
+
+      let limit = !!query.limit ? parseInt(query.limit) : 10;
+
+      let startIndex = (page - 1) * limit;
+      let finalIndex = page * limit;
+
+      let results = users.slice(startIndex, finalIndex);
+
+      return {
+        statusCode: 200,
+        message: "Users fetched successfully",
+        data: results,
+      };
+    } catch (error: any) {
+      return { statusCode: 500, message: error.message, data: null };
+    }
+  }
 }
 
 export default UsersService;
