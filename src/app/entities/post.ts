@@ -9,7 +9,7 @@ export interface IPost extends Document {
 const PostSchema = new mongoose.Schema(
   {
     content: { type: String, required: true, minlength: 1, maxlength: 280 },
-    likes: { type: Number, required: true, default: 0 },
+    likes: { type: Number, default: 0 },
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
