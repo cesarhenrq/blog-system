@@ -7,12 +7,12 @@ import UsersService from "../app/services/usersService";
 import UsersController from "../app/controllers/usersController";
 
 class UserModule {
-  private static repository = new UsersRepository(User);
-  private static service = new UsersService(UserModule.repository);
-  static controller = new UsersController(UserModule.service);
+  static build() {
+    const repository = new UsersRepository(User);
+    const service = new UsersService(repository);
+    const controller = new UsersController(service);
 
-  static init() {
-    return UserModule.controller;
+    return controller;
   }
 }
 
