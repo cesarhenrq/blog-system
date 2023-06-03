@@ -10,6 +10,10 @@ class UsersRepository {
   async create(user: IUser) {
     return this.model.create(user);
   }
+
+  async findById(id: string) {
+    return this.model.findById(id);
+  }
 }
 
 export default UsersRepository;
