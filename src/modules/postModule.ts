@@ -9,16 +9,13 @@ import PostsService from "../app/services/postsService";
 import PostsController from "../app/controllers/postsController";
 
 class PostModule {
-  private static usersRepository = new UsersRepository(User);
-  private static postsRepository = new PostsRepository(Post);
-  private static postsService = new PostsService(
-    PostModule.usersRepository,
-    PostModule.postsRepository
-  );
-  static controller = new PostsController(PostModule.postsService);
-
   static init() {
-    return PostModule.controller;
+    const usersRepository = new UsersRepository(User);
+    const postsRepository = new PostsRepository(Post);
+    const postsService = new PostsService(usersRepository, postsRepository);
+    const controller = new PostsController(postsService);
+
+    return controller;
   }
 }
 
